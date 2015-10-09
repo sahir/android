@@ -251,4 +251,15 @@ public class Util {
 
         return degrees;
     }
+    
+    //get country name from TelephonyManager
+    public static String getCountry(Context context) {
+		String countryName = "";
+		TelephonyManager tm;
+		tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+		countryName = tm.getSimCountryIso();
+		if (countryName == null || countryName.trim().length() == 0)
+			countryName = context.getResources().getConfiguration().locale.getDisplayCountry();
+		return countryName;
+	}
 }
